@@ -1,0 +1,76 @@
+body{
+	background-color: #444;
+}
+div{
+	margin: 20px 10px;
+}
+.container{
+	width: 80%;
+	margin: auto;
+	padding: 20px;
+}
+
+.container h1{
+	font-size: 35px;
+	text-align: center;
+	color: #2faceb;
+}
+.addpeople input[type=text], .addpeople input[type=button]{
+	width: 300px;
+	height: 25px;
+	border: 1px solid #2faceb;
+	border-radius: 5px;
+	margin: 5px 20px;
+}
+.addpeople input[type=button]{
+	width: 150px;
+	background-color:transparent;
+	color: #2faceb; 
+}
+.addpeople input[type=button]:hover, #divide:hover{
+	background-color:#2faceb;
+	color: #fff; 
+}
+#addExpense p{
+	display: inline-block;
+	width: 150px;
+	margin: 5px 20px;
+	color: #2faceb;
+	font-size: 21px;
+}
+#addExpense input[type=text], #addExpense input[type=button], #divide{
+	width: 300px;
+	height: 25px;
+	border: 1px solid #2faceb;
+	border-radius: 5px;
+	margin: 5px 20px;
+}
+#addExpense input[type=button]{
+	width: 100px;
+}
+#addExpense input[type=button]:hover{
+	background-color:#444;
+	color: #2faceb;
+	border: 1px solid #2faceb;
+}
+#results{
+	margin: 30px 0px 100px 20px;
+}
+.perHead, #total{
+	padding: 20px;
+	font-size: 35px;
+	color: #2faceb;
+}
+
+.green, .red{
+	padding: 20px;
+	font-size: 25px;
+}
+
+.green{
+	color: #9fc;
+}
+
+.red{
+	color: #f66;
+}
