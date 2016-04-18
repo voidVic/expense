@@ -1,8 +1,5 @@
 body{
-	background-color: #444;
-}
-div{
-	margin: 20px 10px;
+	background-color: #fff;
 }
 .container{
 	width: 80%;
@@ -15,22 +12,66 @@ div{
 	text-align: center;
 	color: #2faceb;
 }
-.addpeople input[type=text], .addpeople input[type=button]{
-	width: 300px;
-	height: 25px;
+.addpeople input[type=text]{
+	width: 320px;
+	height: 30px;
+	padding: 0 5px;
 	border: 1px solid #2faceb;
 	border-radius: 5px;
-	margin: 5px 20px;
+	margin: 5px 0;
 }
 .addpeople input[type=button]{
-	width: 150px;
-	background-color:transparent;
-	color: #2faceb; 
-}
-.addpeople input[type=button]:hover, #divide:hover{
 	background-color:#2faceb;
-	color: #fff; 
+	color: #fff;
+	position: relative;
+	height: 50px;
+	width: 50px;
+	font-size: 25px;
+	text-align: center;
+	border: none;
+	border-radius: 50px;
+	box-shadow: 2px 2px 5px #888;
+	cursor: pointer;
 }
+.addpeople input[type=button]:active{
+	box-shadow: none;
+	background-color: #217DAB;
+}
+.addpeople input[type=button]:focus{
+	outline: none;
+}
+.split-btns{
+	display: inline-block;
+}
+#divide, #excel{
+	background: url('http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-blue/raphael/raphael_arrow-split/raphael_arrow-split_flat-circle-white-on-blue_512x512.png');
+	background-size: contain;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	border: 0;
+	box-shadow: 1px 1px 5px #444;
+	cursor: pointer;
+	display: none;
+	float: left;
+}
+#excel{
+	background: url('http://44f01c30jfkn2x16la2nc60y.wpengine.netdna-cdn.com/wp-content/uploads/2013/12/export-to-excel.gif');
+	background-size: contain;
+	float: left;
+}
+#divide:active, #excel:active{
+	box-shadow: none;
+}
+.excel-label{
+	float: left;
+	color: #999;
+	font-style: italic;
+	line-height: 50px;
+	padding: 0 5px;
+	display: none;
+}
+
 #addExpense p{
 	display: inline-block;
 	width: 150px;
@@ -38,39 +79,52 @@ div{
 	color: #2faceb;
 	font-size: 21px;
 }
-#addExpense input[type=text], #addExpense input[type=button], #divide{
+#addExpense input[type=text], #addExpense input[type=button]{
 	width: 300px;
 	height: 25px;
 	border: 1px solid #2faceb;
 	border-radius: 5px;
 	margin: 5px 20px;
+	padding: 5px;
 }
 #addExpense input[type=button]{
-	width: 100px;
+	width: 40px;
+    height: 40px;
+    border-radius: 41px;
+    background-color: aliceblue;
+	box-shadow: 1px 1px 5px #888;
 }
-#addExpense input[type=button]:hover{
-	background-color:#444;
+.track-array{
+	padding: 5px 20px;
 	color: #2faceb;
-	border: 1px solid #2faceb;
 }
 #results{
 	margin: 30px 0px 100px 20px;
 }
 .perHead, #total{
 	padding: 20px;
-	font-size: 35px;
+	font-size: 25px;
 	color: #2faceb;
 }
 
 .green, .red{
-	padding: 20px;
-	font-size: 25px;
+	padding: 10px;
+	margin: 10px 0;
+	width: 100%;
+	font-size: 20px;
+	color: #2faceb;
 }
 
 .green{
-	color: #9fc;
+	background-color: #DEFFDE;
 }
 
 .red{
-	color: #f66;
+	background-color: #FFEDED;
+}
+input[type=button]:active{
+	box-shadow: none;
+}
+input:focus{
+	outline: none;
 }
