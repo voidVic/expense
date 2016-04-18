@@ -6,14 +6,19 @@
 </head>
 <body onload="checkExpense()">
 	<div class="container">
-		<h1>Expense Divider</h1>
+		<h1>ED</h1>
 		<div class="addPeople">
-			<input type="text" id="addPeopleNames">
-			<input type="button" id="addPeople" value="Add People">
+			<input type="text" id="addPeopleNames" placeholder="Add names seperated by comma (,) and hit + icon">
+			<input type="button" id="addPeople" value="+">
 		</div>
 		<div id="addExpense"></div>
 		<div id="total"></div>
-		<input type="button" id="divide" value="Divide">
+		<div class="split-btns">
+			<input type="button" id="divide">
+			<div class="excel-label">Need an Excel for this split? we can do this for you.</div>
+			<input type="button" id="excel">
+		</div>
+		
 		<div id="results">
 		</div>
 	</div>
