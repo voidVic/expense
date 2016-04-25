@@ -1,14 +1,22 @@
+var nameToAdd = document.getElementById('addPeopleNames');
+var addExpense = document.getElementById('addExpense');
+var addMisc = document.getElementById('addMisc');
+var miscTag = document.getElementById('miscTag');
+var miscAmt = document.getElementById('miscAmt');
+var miscExpView = document.getElementById('miscExpView');
+var total = document.getElementById('total');
+var result = document.getElementById('results');
+var totalMemebers = 0;
+var totalAmount = 0;
+var nameAmount = [];
+var miscAmount = [];
+var perhead = 0;
+var divide = document.getElementById('divide');
+var excel = document.getElementById('excel');
+
+
 function checkExpense(){
-	var nameToAdd = document.getElementById('addPeopleNames');
-	var addExpense = document.getElementById('addExpense');
-	var total = document.getElementById('total');
-	var result = document.getElementById('results');
-	var totalMemebers = 0;
-	var totalAmount = 0;
-	var nameAmount = [];
-	var perhead = 0;
-	var divide = document.getElementById('divide');
-	var excel = document.getElementById('excel');
+	
 
 	document.getElementById('addPeople').addEventListener('click', function(){
 		var nameArr = nameToAdd.value.split(',');
@@ -20,11 +28,19 @@ function checkExpense(){
 			pushPeople(nameArr[i]);
 		}
 	});
+	
+	addMisc.addEventListener('click', function(){
+		if(miscTag.value != '' && miscAmt.value != ''){
+			var miscObj = {"tag":miscTag.value, "amt":parseInt(miscAmt.value)};
+			miscAmount.push(miscObj);
+			plotMiscView(miscObj);
+		}
+	});
 
 
 	divide.addEventListener('click', function(){
 		result.innerHTML = "";
-		perhead = Math.ceil(totalAmount/nameAmount.length);
+		perhead = totalAmount/nameAmount.length;
 		perhd = document.createElement('p');
 		perhd.className = 'perHead';
 		perhd.innerHTML = "Per Head Expense : " + perhead;
@@ -137,8 +153,44 @@ function checkExpense(){
 			addExpense.appendChild(addExpenseDiv);
 			indInvestment.innerHTML = 0;
 	}
+	
 }
 
+function plotMiscView(miscObj){
+	var remId = miscAmount.length;
+	var tag = document.createElement('div');
+	tag.className = "miscTag";
+	tag.innerHTML = miscObj.tag;
+	var amt = document.createElement('div');
+	amt.className = "miscAmt";
+	amt.innerHTML = miscObj.amt;
+	var remove = document.createElement('input');
+	remove.type = 'button';
+	remove.value = "X";
+	remove.addEventListener('click', function(){
+		totalAmount -= miscAmount[remId-1].amt;
+		total.innerHTML = "Total : " + totalAmount;
+		miscAmount.splice(remId-1, 1);
+		refreshMiscView();
+	});
+	totalAmount += miscObj.amt;
+	miscAmt.value = "";
+	miscTag.value = "";
+	var p = document.createElement('div');
+	p.appendChild(tag);
+	p.appendChild(amt);
+	p.appendChild(remove);
+	
+	miscExpView.appendChild(p);
+	total.innerHTML = "Total : " + totalAmount;
+}
+
+function refreshMiscView(){
+	miscExpView.innerHTML = "";
+	for(var i = 0 ; i < miscAmount.length ; i++ ){
+		plotMiscView(miscAmount[i]);
+	}
+}
 
 
 function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel, totalAmount, perhead) {
@@ -204,13 +256,6 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel, totalAmount, perhe
     
     //Initialize file format you want csv or xls
     var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-    
-    // Now the little tricky part.
-    // you can use either>> window.open(uri);
-    // but this will not work in some browsers
-    // or you will not get the correct file extension    
-    
-    //this trick will generate a temp <a /> tag
     var link = document.createElement("a");    
     link.href = uri;
     
