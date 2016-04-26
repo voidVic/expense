@@ -197,7 +197,9 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel, totalAmount, perhe
     //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
     var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
     
-    var CSV = '';    
+    var CSV = '';
+	var seperationIndent = '';
+	var totalSpent = 0;
     //Set Report title in first row or line
     
     CSV += ReportTitle + '\r\n\n';
@@ -210,6 +212,7 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel, totalAmount, perhe
         //This loop will extract the label from 1st index of on array
         for( var i = 0 ; i < arrData.length ; i++ ){
 			row += arrData[i].name + ',';
+			seperationIndent += ' ,';
 			if(arrData[i].amount.length > maxAmtLen){
 				maxAmtLen = arrData[i].amount.length;
 			}
@@ -233,15 +236,31 @@ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel, totalAmount, perhe
 		CSV += row + '\r\n';
 	}
 	row = '\r\n';
+	
+	/*Total*/
+	row = '\r\n';
 	for(var i = 0 ; i < arrData.length ; i++ ){
 		row += arrData[i].total + ',';
+		totalSpent += arrData[i].total;
 	}
-	row += ',,Total,' + totalAmount;
-	CSV += row;
-	row = '\r\n\n';
+	row += ',,Sum Spent,' + totalSpent;
+	CSV += row + '\n';
+	
+	/*Misc Exp*/
+	for(var i = 0 ; i < miscAmount.length ; i++ ){
+		CSV += seperationIndent + ',,' + miscAmount[i].tag + ',' + miscAmount[i].amt + '\n';
+	}
+	
+	/*Total Amount*/
+	CSV += seperationIndent + ',, Total,' + totalAmount + '\n';
+	
+	/*Per head*/
+	
+	row = '\r\n';
 	for(var i = 0 ; i < arrData.length ; i++ ){
 		row += arrData[i].bal + ',';
 	}
+	
 	row += ',,Per Head,' + perhead;
 	CSV += row;
     if (CSV == '') {        
