@@ -156,7 +156,7 @@ function checkExpense(){
 	
 }
 
-function plotMiscView(miscObj){
+function plotMiscView(miscObj, isRefreshed){
 	var remId = miscAmount.length;
 	var tag = document.createElement('div');
 	tag.className = "miscTag";
@@ -173,7 +173,9 @@ function plotMiscView(miscObj){
 		miscAmount.splice(remId-1, 1);
 		refreshMiscView();
 	});
-	totalAmount += miscObj.amt;
+	if(!isRefreshed){
+		totalAmount += miscObj.amt;
+	}
 	miscAmt.value = "";
 	miscTag.value = "";
 	var p = document.createElement('div');
@@ -188,7 +190,7 @@ function plotMiscView(miscObj){
 function refreshMiscView(){
 	miscExpView.innerHTML = "";
 	for(var i = 0 ; i < miscAmount.length ; i++ ){
-		plotMiscView(miscAmount[i]);
+		plotMiscView(miscAmount[i], true);
 	}
 }
 
