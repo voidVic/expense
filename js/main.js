@@ -40,7 +40,7 @@ function checkExpense(){
 
 	divide.addEventListener('click', function(){
 		result.innerHTML = "";
-		perhead = totalAmount/nameAmount.length;
+		perhead = parseFloat(totalAmount/nameAmount.length).toFixed(2);
 		perhd = document.createElement('p');
 		perhd.className = 'perHead';
 		perhd.innerHTML = "Per Head Expense : " + perhead;
